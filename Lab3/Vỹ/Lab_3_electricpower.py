@@ -45,6 +45,8 @@ def load_and_preprocess(file_name):
 
 ############################ Complete the following 4 functions ###############
 def plot1(df):
+    mask = (df['Time'] >= '00:00:00') & (df['Time'] <= '23:00:00')
+    df = df.loc[mask]
     plt.figure(figsize = (8,7))
     sns.histplot(x="Global_active_power", data=df,bins = 21, kde=False, color = 'red')
     plt.title('Global Active Power',weight='bold')
@@ -86,7 +88,7 @@ def plot3(df):
     plt.savefig('plot3.png')
 
 def plot4(df):
-    mask = (df['Time'] >= '05:00:00') & (df['Time'] <= '23:00:00')
+    mask =  (df['Time'] >= '05:00:00') & (df['Time'] <= '23:00:00')
     df = df.loc[mask]
     fig, axs = plt.subplots(2,2,figsize=(20,10))
     axs[0][0].plot(df['Time'],df['Global_active_power'], color="black")
